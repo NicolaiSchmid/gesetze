@@ -1,8 +1,10 @@
 import Link from "next/link";
+import Flag from "./Flag";
 
 export default function Layout({ children }) {
   return (
     <div className="min-w-screen min-h-screen bg-gray-100">
+      <Flag />
       <div className="z-50 relative bg-white shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex justify-between items-center py-3 md:justify-start md:space-x-10">
