@@ -3,6 +3,8 @@ import flatten from "lodash/flatten";
 import Link from "next/link";
 import Flag from "../../components/Flag";
 
+import crawlLaws from "../../lib/crawlLaws";
+
 const DOMAIN = "https://www.gesetze-im-internet.de";
 export default function Display({
   headers = [],
@@ -112,12 +114,29 @@ export async function getServerSideProps({ params: { law, paragraph } }) {
   };
 }
 
-// // Generate all possible laws and paragraphs
-// export async function getStaticPaths({ law, paragraph }) {
-//   console.log(law, paragraph);
-//   // Call an external API endpoint to get posts
-//   const res = await fetch(
-//     `https://www.gesetze-im-internet.de/{law}/__{paragraph}.html`
-//   );
-//   console.log(response);
-// }
+// Generate all possible laws and paragraphs
+export async function getStaticPaths() {
+  // console.log(law, paragraph);
+  // // Call an external API endpoint to get posts
+  // const res = await fetch(
+  //   `https://www.gesetze-im-internet.de/{law}/__{paragraph}.html`
+  // );
+  // console.log(response);
+
+  const laws = await crawlLaws();
+  const articles = await Promise.all(
+    laws.map(async (law) => {
+      const { paragraphs } = await crawlArticles(law);
+
+      return paragraphs.map((paragraph) => ({
+        law,
+        paragraph,
+      }));
+    })
+  );
+
+  return {
+    paths: articles.map((article) => ({ params: article })),
+    fallback: true,
+  };
+}
