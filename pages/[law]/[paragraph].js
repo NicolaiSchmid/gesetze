@@ -1,6 +1,8 @@
 import DOMParser from "dom-parser";
 import flatten from "lodash/flatten";
 import Link from "next/link";
+import { useHotkeys } from "react-hotkeys-hook";
+import { useRouter } from "next/router";
 
 import Flag from "../../components/Flag";
 import Navigate from "../../components/Navigate";
@@ -15,6 +17,33 @@ export default function Display({
   law,
   paragraph,
 }) {
+  const router = useRouter();
+  // Previous paragraph
+  useHotkeys(
+    "j",
+    (event) => {
+      event.preventDefault();
+
+      if (!law || !backward) return;
+
+      router.push(`/${law}/${backward}`);
+    },
+    [backward, router]
+  );
+
+  // Next paragraph
+  useHotkeys(
+    "l",
+    (event) => {
+      event.preventDefault();
+
+      if (!law || !forward) return;
+
+      router.push(`/${law}/${forward}`);
+    },
+    [backward, router]
+  );
+
   return (
     <div className="min-w-screen min-h-screen bg-gray-200 ">
       <Flag />
