@@ -27,23 +27,26 @@ export default function Display({
                 <h2
                   className="text-lg"
                   dangerouslySetInnerHTML={{ __html: header }}
+                  key={header}
                 />
               ))}
             </div>
           </div>
           <div className="w-full mb-10">
             {content.map((content) => (
-              <p
+              <div
                 className="text-sm text-gray-600px-5 m-2"
                 dangerouslySetInnerHTML={{ __html: content }}
+                key={content}
               />
             ))}
           </div>
           <div className="w-full">
             {footnotes.map((footnote) => (
-              <p
+              <div
                 className="text-md text-gray-600"
                 dangerouslySetInnerHTML={{ __html: footnote }}
+                key={footnote}
               />
             ))}
           </div>
