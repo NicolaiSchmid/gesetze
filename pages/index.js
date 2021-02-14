@@ -37,8 +37,22 @@ export default function Home() {
         </h3>
         <p>
           Auf jeder Gesetzestextseite kann mit dem Drücken der Taste "p" eine
-          schnelle Navigation aufgerufen werden, wo der Paragraphname eingegeben
-          werden kann.
+          schnelle Navigation aufgerufen werden, wo durch unterschiedliche
+          Eingaben verschiedene schnelle Navigationen möglich sind:
+          <ul>
+            <li>
+              Eine einfache Zahl ("3" oder "255") führt zum Paragraphen der
+              eingegebenen Nummer des aktuellen Gesetzes
+            </li>
+            <li>
+              Eine einfache Zahl mit § ("§260", "§1") bewirkt den gleichen
+              Effekt, wie ohne Paragraphzeichen
+            </li>
+            <li>
+              Ein Gesetzkürzel mit dem Paragraphzeichen und einer Zahl ("HGB§1",
+              "GmbhG§10") führt zum gewünschten Gesetz und Paragraphen
+            </li>
+          </ul>
         </p>
         <p>
           Mit "j" und "k" kann zum vorherigen, beziehungsweise nächsten

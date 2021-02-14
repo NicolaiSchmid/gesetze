@@ -10,3 +10,7 @@ dt {
   float: left;
   margin-right: 8px;
 }
+
+ul {
+  @apply list-disc;
+}
