@@ -1,7 +1,9 @@
 import DOMParser from "dom-parser";
 import flatten from "lodash/flatten";
 import Link from "next/link";
+
 import Flag from "../../components/Flag";
+import Navigate from "../../components/Navigate";
 
 const DOMAIN = "https://www.gesetze-im-internet.de";
 export default function Display({
@@ -16,45 +18,47 @@ export default function Display({
   return (
     <div className="min-w-screen min-h-screen bg-gray-200 ">
       <Flag />
-      <div className="flex items-center justify-center px-5 py-5">
-        <div
-          className="w-full mx-auto rounded-lg bg-white shadow-lg px-5 pt-5 pb-10 text-gray-800"
-          style={{ maxWidth: "700px" }}
-        >
-          <div className="w-full pt-1 pb-5">
-            <div className="">
-              {headers.map((header) => (
-                <h2
-                  className="text-lg"
-                  dangerouslySetInnerHTML={{ __html: header }}
-                  key={header}
+      <div className="flex-inline items-center justify-center px-5 py-5">
+        <div className="w-full mx-auto" style={{ maxWidth: "700px" }}>
+          <Navigate law={law} paragraph={paragraph} />
+          <div className="w-full mx-auto rounded-lg bg-white shadow-lg px-5 pt-5 pb-10 text-gray-800">
+            <div className="w-full pt-1 pb-5">
+              <div>
+                {headers.map((header) => (
+                  <h2
+                    className="text-lg"
+                    dangerouslySetInnerHTML={{ __html: header }}
+                    key={header}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className="w-full mb-10">
+              {content.map((content) => (
+                <div
+                  className="text-sm text-gray-600px-5 m-2"
+                  dangerouslySetInnerHTML={{ __html: content }}
+                  key={content}
                 />
               ))}
             </div>
-          </div>
-          <div className="w-full mb-10">
-            {content.map((content) => (
-              <div
-                className="text-sm text-gray-600px-5 m-2"
-                dangerouslySetInnerHTML={{ __html: content }}
-                key={content}
-              />
-            ))}
-          </div>
-          <div className="w-full">
-            {footnotes.map((footnote) => (
-              <div
-                className="text-md text-gray-600"
-                dangerouslySetInnerHTML={{ __html: footnote }}
-                key={footnote}
-              />
-            ))}
-          </div>
-          <div className="w-full flex justify-between">
-            <NavigationButton href={`/${law}/${backward}`}>
-              Zurück
-            </NavigationButton>
-            <NavigationButton href={`/${law}/${forward}`}>Vor</NavigationButton>
+            <div className="w-full">
+              {footnotes.map((footnote) => (
+                <div
+                  className="text-md text-gray-600"
+                  dangerouslySetInnerHTML={{ __html: footnote }}
+                  key={footnote}
+                />
+              ))}
+            </div>
+            <div className="w-full flex justify-between">
+              <NavigationButton href={`/${law}/${backward}`}>
+                Zurück
+              </NavigationButton>
+              <NavigationButton href={`/${law}/${forward}`}>
+                Vor
+              </NavigationButton>
+            </div>
           </div>
         </div>
       </div>
