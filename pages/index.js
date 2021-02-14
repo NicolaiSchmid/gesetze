@@ -40,6 +40,10 @@ export default function Home() {
           schnelle Navigation aufgerufen werden, wo der Paragraphname eingegeben
           werden kann.
         </p>
+        <p>
+          Mit "j" und "k" kann zum vorherigen, beziehungsweise nächsten
+          Paragraphen gesprungen werden.
+        </p>
         <br />
         <p className="">
           Autor -{" "}
