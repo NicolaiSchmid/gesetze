@@ -52,10 +52,10 @@ export default function Display({
               ))}
             </div>
             <div className="w-full flex justify-between">
-              <NavigationButton href={`/${law}/${backward}`}>
+              <NavigationButton law={law} paragraph={backward}>
                 Zurück
               </NavigationButton>
-              <NavigationButton href={`/${law}/${forward}`}>
+              <NavigationButton law={law} paragraph={forward}>
                 Vor
               </NavigationButton>
             </div>
@@ -66,9 +66,10 @@ export default function Display({
   );
 }
 
-function NavigationButton({ href, children }) {
+function NavigationButton({ law, paragraph, children }) {
+  if (!law || !paragraph) return <div />;
   return (
-    <Link href={href}>
+    <Link href={`/${law}/${paragraph}`}>
       <a className="px-1 py-1 border border-transparent text-sm leading-2 font-medium rounded-md hover:bg-indigo-500 hover:text-white focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700">
         {children}
       </a>
@@ -77,6 +78,8 @@ function NavigationButton({ href, children }) {
 }
 
 function getLinkHref(element) {
+  if (!element || !element.attributes) return null;
+
   const originalLink = element.attributes
     .map((attribute) => (attribute.name === "href" ? attribute.value : null))
     .filter(Boolean)[0];
