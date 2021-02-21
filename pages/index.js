@@ -55,7 +55,7 @@ export default function Home() {
           </ul>
         </p>
         <p>
-          Mit "j" und "k" kann zum vorherigen, beziehungsweise nächsten
+          Mit "j" und "l" kann zum vorherigen, beziehungsweise nächsten
           Paragraphen gesprungen werden.
         </p>
         <br />
