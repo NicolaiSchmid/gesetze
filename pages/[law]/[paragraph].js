@@ -7,6 +7,8 @@ import { useRouter } from "next/router";
 import Flag from "../../components/Flag";
 import Navigate from "../../components/Navigate";
 
+import BookmarkButton from "../../components/BookmarkButton";
+
 const DOMAIN = "https://www.gesetze-im-internet.de";
 export default function Display({
   headers = [],
@@ -51,7 +53,7 @@ export default function Display({
         <div className="w-full mx-auto" style={{ maxWidth: "700px" }}>
           <Navigate law={law} paragraph={paragraph} />
           <div className="w-full mx-auto rounded-lg bg-white shadow-lg px-5 pt-5 pb-10 text-gray-800">
-            <div className="w-full pt-1 pb-5">
+            <div className="w-full pt-1 pb-5 flex justify-between">
               <div>
                 {headers.map((header) => (
                   <h2
@@ -61,6 +63,7 @@ export default function Display({
                   />
                 ))}
               </div>
+              <BookmarkButton bookmark={`/${law}/${paragraph}`} />
             </div>
             <div className="w-full mb-10">
               {content.map((content) => (

@@ -1,9 +1,13 @@
 import Link from "next/link";
 import Layout from "../components/Layout";
+
+import Bookmarks from "../components/Bookmarks";
+
 export default function Home() {
   return (
     <Layout>
       <div className="p-8 text-gray-800">
+        <Bookmarks />
         <p>
           Eine angenehme Webapp für{" "}
           <a
@@ -58,6 +62,7 @@ export default function Home() {
           Mit "j" und "l" kann zum vorherigen, beziehungsweise nächsten
           Paragraphen gesprungen werden.
         </p>
+        <p>Mit "b" kann ein Lesezeichen gesetzt werden</p>
         <br />
         <p className="">
           Autor -{" "}
